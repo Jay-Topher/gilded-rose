@@ -60,8 +60,8 @@ describe("Quality is never negative or above 50", () => {
   });
 });
 
-describe("'Sulfuras' does not have to be sold & does not reduce quality.", () => {
-  const oldQuality = 15;
+describe("'Sulfuras' does not have to be sold & does not reduce quality from 80.", () => {
+  const oldQuality = 80;
   const mockItems = [new Item("Sulfuras", 4, oldQuality)];
   const testShop = new GildedRose(mockItems);
 
