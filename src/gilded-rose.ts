@@ -30,6 +30,7 @@ export class GildedRose {
         quality increases by 2 when sellIn > 5 && <= 10 and by 3 when sellIn <= 5 && > 0
         it drops to 0 after concert 👍
       - 'Conjured' degrades in quality twice as fast as normal items 👍
+      - Items to be considered => "Aged Brie", "Backstage passes", "Sulfuras", "Conjured", others.
      */
     for (let item of this.items) {
       // Check that item is not 'Aged Brie', 'Backstage passes',
@@ -59,15 +60,18 @@ export class GildedRose {
         } else {
           incrementor = -item.quality;
         }
+
         item.quality =
           item.quality + incrementor < 50 ? item.quality + incrementor : 50;
       } else if (item.name === "Conjured") {
-        // account for Conjured to reduce twice as much as others
+        // account for 'Conjured' to reduce twice as much as others
         if (item.sellIn > 0) {
           item.quality = item.quality > 2 ? item.quality - 2 : 0;
         } else {
           item.quality = item.quality > 4 ? item.quality - 4 : 0;
         }
+      } else if (item.name === "Sulfuras") {
+        item.quality = 80;
       }
 
       if (item.name !== "Sulfuras") {
@@ -82,7 +86,7 @@ export class GildedRose {
 export const items = [
   new Item("Aged Brie", 7, 49),
   new Item("Backstage passes", 6, 25),
-  new Item("Sulfuras", 4, 15),
+  new Item("Sulfuras", 4, 80),
   new Item("Conjured", 5, 15),
   new Item("Random", 1, 1),
 ];
