@@ -1,0 +1,32 @@
+import { GildedRose, items } from "./src/gilded-rose";
+import { logToFile, getLogText } from "./src/logText";
+import repeatRequest from "./src/requests/yesNo";
+
+const [updateCount, requestCount] = process.argv.splice(2);
+
+if (!updateCount && !requestCount) {
+  console.error(
+    "Error: Please provide valid CLI arguments for update and request counts"
+  );
+  process.exit(1);
+}
+
+const shop = new GildedRose(items);
+
+async function performCallsAndUpdate() {
+  logToFile("");
+  let logText = getLogText();
+
+  while (logText !== "0") {
+    const newRequestTimes = Number(logText) === 0 ? requestCount : logText;
+    const data = await repeatRequest(Number(newRequestTimes));
+    logToFile(data.toString());
+    logText = data.toString();
+  }
+  shop.updateQuality();
+}
+
+const updateCountNum = Number(updateCount);
+for (let i = 0; i < updateCountNum; i++) {
+  performCallsAndUpdate();
+}
