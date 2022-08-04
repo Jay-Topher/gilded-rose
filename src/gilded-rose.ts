@@ -78,3 +78,11 @@ export class GildedRose {
     return this.items;
   }
 }
+
+export const items = [
+  new Item("Aged Brie", 7, 49),
+  new Item("Backstage passes", 6, 25),
+  new Item("Sulfuras", 4, 15),
+  new Item("Conjured", 5, 15),
+  new Item("Random", 1, 1),
+];
