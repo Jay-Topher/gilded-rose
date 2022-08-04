@@ -1,3 +1,4 @@
+![Gilded Rose](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
 # Gilded-Rose Refactoring
 Nodejs Task to refactor gilded rose class update method
 
